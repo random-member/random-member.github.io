@@ -1,5 +1,7 @@
 import "./App.css";
 import * as React from "react";
+import pickRandom from "pick-random";
+import _remove from 'lodash/remove';
 
 export default function App() {
   const defaultMember = (msg) => ({
@@ -31,17 +33,8 @@ export default function App() {
       "nara"
     ];
 
-    let index = 1;
-    for (let i = 0; i < 8; i++) {
-      const random = Math.floor(Math.random() * rest1.length);
-      const picked = rest1[random];
-      rest1 = rest1.filter((v) => v !== picked);
-      if (result[index].length < 4) {
-        result[index].push(picked);
-      } else {
-        result[++index].push(picked);
-      }
-    }
+    result["1"] = pickRandom(rest1, {count: 4});
+    result["2"] = _remove(rest1, n => !result["1"].includes(n));
     return result;
   };
 
@@ -59,14 +52,8 @@ export default function App() {
       "benny",
 
     ];
-    let index = 1;
-    for (let i = 0; i < 2; i++) {
-      const random = Math.floor(Math.random() * rest2.length);
-      const picked = rest2[random];
-      rest2 = rest2.filter((v) => v !== picked);
-      result[index].push(picked);
-    }
-    return result;
+  result["1"] = pickRandom(rest2, {count: 2});
+  return result;
   };
 
   const pickDeploy = () => {
@@ -78,10 +65,8 @@ export default function App() {
       "anthony",
       "benny",
       "winnie",
-
     ];
-    const random = Math.floor(Math.random() * member.length);
-    return member[random];
+    return pickRandom(member, {count: 1});
   };
 
   const draw = () => {
