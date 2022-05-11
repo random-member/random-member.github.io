@@ -2,7 +2,6 @@ import "./App.css";
 import * as React from "react";
 import pickRandom from "pick-random";
 import _remove from "lodash/remove";
-import _repeat from "lodash/repeat";
 
 export default function App() {
   const defaultMember = (msg) => ({
@@ -17,6 +16,33 @@ export default function App() {
   const [deploy, setDeploy] = React.useState("뽑아주세요우..!");
   const [title, setTitle] = React.useState("다음사람은 누구?");
   const [bang, setBang] = React.useState(false);
+
+  const [timeLeft, setTimeLeft] = React.useState(null);
+
+  React.useEffect(() => {
+    if (timeLeft === 0) {
+      setMember(generateRetro());
+      setTeamSync(generateTempSync());
+      setDeploy(pickDeploy());
+      setTitle("🎉🎉🎉🎉🎉🎉🎉🎉🎉✨ Congratulations! ✨👏👏👏👏👏👏👏👏👏");
+      setBang(true);
+      setTimeLeft(null);
+    }
+
+    // exit early when we reach 0
+    if (!timeLeft) return;
+
+    // save intervalId to clear the interval when the
+    // component re-renders
+    const intervalId = setInterval(() => {
+      setTimeLeft(timeLeft - 1);
+    }, 1000);
+
+    // clear interval on re-render to avoid memory leaks
+    return () => clearInterval(intervalId);
+    // add timeLeft as a dependency to re-rerun the effect
+    // when we update it
+  }, [timeLeft]);
 
   const generateRetro = () => {
     const result = {
@@ -73,108 +99,117 @@ export default function App() {
     setMember(defaultMember("두구두구두구🙂🙃🥁🥁🥁🥁🥁🥁🥁"));
     setTeamSync(defaultTeam("두구두구..두구!!!"));
     setDeploy("두구두구두구두구두구🙀");
-    setTitle("⭐️️️️️️🤩✨");
+    setTitle(
+      "⭐️️️️️️🤩✨⭐️️️️️️🤩✨두구두구두구두구두구⭐️️️️️️🤩✨⭐️️️️️️🤩✨"
+    );
     setBang(false);
-
-    setTimeout(() => {
-      setMember(generateRetro());
-      setTeamSync(generateTempSync());
-      setDeploy(pickDeploy());
-      setTitle("🎉🎉🎉 짜잔 ✨👏👏👏");
-      setBang(true);
-    }, 2000);
+    setTimeLeft(3);
   };
 
   return (
-    <div className="App">
-      <div className="fyi">
-        ** Random 적용 패키지:{" "}
-        <a
-          href={"https://www.npmjs.com/package/pick-random"}
-          target="_blank"
-          rel="noreferrer noopener"
-        >
-          https://www.npmjs.com/package/pick-random
-        </a>
-      </div>
-      {bang && (
-        <div>
-          <div className="confetti" />
-          <div className="confetti" />
-          <div className="confetti" />
-          <div className="confetti" />
-          <div className="confetti" />
-          <div className="confetti" />
-          <div className="confetti" />
-          <div className="confetti" />
-          <div className="confetti" />
-          <div className="confetti" />
-          <div className="confetti" />
-          <div className="confetti" />
-          <div className="confetti" />
+    <>
+      {timeLeft && (
+        <div className="timer">
+          <div className="number">{timeLeft}</div>}
         </div>
       )}
-      <h1>{title}</h1>
-      <button
-        style={{
-          width: "100px",
-          height: "30px",
-          fontSize: "20px",
-          zIndex: 9999,
-        }}
-        onClick={draw}
-      >
-        {bang ? "다시뽑기" : "뽑기"}
-      </button>
-      <br />
-      <br />
-      <div style={{ fontWeight: "bold", fontSize: "30px" }}>회고</div>
-      <br />
-      <div>
-        {Object.keys(member).map((key) => {
-          return (
-            <React.Fragment key={key}>
-              <div style={{ fontWeight: "bold", fontSize: "25px" }}>
-                {key}조
-              </div>
-              <div>
-                {member[key].map((name) => (
-                  <div
-                    key={name}
-                    style={{ textTransform: "capitalize", fontSize: "22px" }}
-                  >
-                    {name}
-                  </div>
-                ))}
-              </div>
-              <br />
-            </React.Fragment>
-          );
-        })}
-      </div>
-      <div>
-        <div style={{ fontWeight: "bold", fontSize: "25px" }}>Team sync up</div>
-        <div>
-          {teamSync[1].map((name) => (
-            <div
-              key={name}
-              style={{ textTransform: "capitalize", fontSize: "22px" }}
-            >
-              {name}
-            </div>
-          ))}
+      <div className="App">
+        <div className="fyi">
+          ** Random 적용 패키지:{" "}
+          <a
+            href={"https://www.npmjs.com/package/pick-random"}
+            target="_blank"
+            rel="noreferrer noopener"
+          >
+            https://www.npmjs.com/package/pick-random
+          </a>
         </div>
-        <br />
-      </div>
-      <div>
-        <div style={{ fontWeight: "bold", fontSize: "25px" }}>Deploy</div>
-        <div>
-          <div style={{ textTransform: "capitalize", fontSize: "22px" }}>
-            {deploy}
+        {bang && (
+          <div>
+            <div className="confetti" />
+            <div className="confetti" />
+            <div className="confetti" />
+            <div className="confetti" />
+            <div className="confetti" />
+            <div className="confetti" />
+            <div className="confetti" />
+            <div className="confetti" />
+            <div className="confetti" />
+            <div className="confetti" />
+            <div className="confetti" />
+            <div className="confetti" />
+            <div className="confetti" />
+            <div className="confetti" />
+            <div className="confetti" />
+            <div className="confetti" />
+            <div className="confetti" />
+            <div className="confetti" />
           </div>
-        </div>
+        )}
+        <h1>{title}</h1>
+        <button
+          style={{
+            width: "100px",
+            height: "30px",
+            fontSize: "20px",
+            zIndex: 9999,
+          }}
+          onClick={draw}
+        >
+          {bang ? "다시뽑기" : timeLeft ? "뽑는중.." : "뽑기"}
+        </button>
         <br />
+        <br />
+        <div style={{ fontWeight: "bold", fontSize: "30px" }}>회고</div>
+        <br />
+        <div>
+          {Object.keys(member).map((key) => {
+            return (
+              <React.Fragment key={key}>
+                <div style={{ fontWeight: "bold", fontSize: "25px" }}>
+                  {key}조
+                </div>
+                <div>
+                  {member[key].map((name) => (
+                    <div
+                      key={name}
+                      style={{ textTransform: "capitalize", fontSize: "22px" }}
+                    >
+                      {name}
+                    </div>
+                  ))}
+                </div>
+                <br />
+              </React.Fragment>
+            );
+          })}
+        </div>
+        <div>
+          <div style={{ fontWeight: "bold", fontSize: "25px" }}>
+            Team sync up
+          </div>
+          <div>
+            {teamSync[1].map((name) => (
+              <div
+                key={name}
+                style={{ textTransform: "capitalize", fontSize: "22px" }}
+              >
+                {name}
+              </div>
+            ))}
+          </div>
+          <br />
+        </div>
+        <div>
+          <div style={{ fontWeight: "bold", fontSize: "25px" }}>Deploy</div>
+          <div>
+            <div style={{ textTransform: "capitalize", fontSize: "22px" }}>
+              {deploy}
+            </div>
+          </div>
+          <br />
+        </div>
       </div>
-    </div>
+    </>
   );
 }

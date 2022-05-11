@@ -16,9 +16,9 @@ body {
   transform-origin: left top;
 }
 .confetti:nth-child(1) {
-  background-color: #f2d74e;
+  background-color: #ff7400;
   left: 10%;
-  animation-delay: 0;
+  animation-delay: -0.5s;
 }
 .confetti:nth-child(2) {
   background-color: #95c3de;
@@ -46,7 +46,7 @@ body {
   animation-delay: -6s;
 }
 .confetti:nth-child(7) {
-  background-color: #f2d74e;
+  background-color: #77492c;
   left: 70%;
   animation-delay: -1.5s;
 }
@@ -80,10 +80,45 @@ body {
   left: 25%;
   animation-delay: -1.8s;
 }
+.confetti:nth-child(14) {
+  background-color: #8accda;
+  left: 8%;
+  animation-delay: -2.8s;
+}
+.confetti:nth-child(15) {
+  background-color: #e35d24;
+  left: 78%;
+  animation-delay: -5s;
+}
+.confetti:nth-child(16) {
+  background-color: #423afd;
+  left: 55%;
+  animation-delay: -3s;
+}
+.confetti:nth-child(17) {
+  background-color: #be3ee8;
+  left: 33%;
+  animation-delay: -1.45s;
+}
+.confetti:nth-child(18) {
+  background-color: #ffec05;
+  left: 25%;
+  animation-delay: -2.2s;
+}
+.confetti:nth-child(19) {
+  background-color: #73dc2e;
+  left: 65%;
+  animation-delay: -3.1s;
+}
+.confetti:nth-child(20) {
+  background-color: #fc5f5f;
+  left: 49%;
+  animation-delay: -2.78s;
+}
 
 @keyframes confetti {
   0% {
-    transform: rotateZ(15deg) rotateY(0deg) translate(0, 0);
+    transform: rotateZ(20deg) rotateY(0deg) translate(0, 0);
   }
   25% {
     transform: rotateZ(5deg) rotateY(360deg) translate(-5vw, 20vh);
@@ -104,4 +139,38 @@ body {
   right: 20px;
   bottom: 20px;
   text-decoration: none;
+}
+
+.timer {
+  background: rgba(0, 0, 0, 0.5);
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  z-index: 1;
+}
+
+@keyframes zoom-in-zoom-out {
+  0% {
+    transform: scale(1, 1);
+  }
+  50% {
+    transform: scale(1.5, 1.5);
+  }
+  100% {
+    transform: scale(1, 1);
+  }
+}
+
+.timer .number {
+  z-index:2;
+  font-size: 500px;
+  display: flex;
+  justify-content:center;
+  align-items: center;
+  height: 100%;
+  color: white;
+  text-shadow: 10px 10px 30px #3d3838;
+  animation: zoom-in-zoom-out 1s ease-out infinite;
 }
