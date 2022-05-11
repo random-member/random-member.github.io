@@ -50,13 +50,14 @@ export default function App() {
       1: []
     };
     let rest2 = [
-      "gump",
       "winnie",
       "anthony",
-      "hazle",
       "randy",
+      "hunter",
+      "hazle",
+      "gump",
       "benny",
-      "hunter"
+
     ];
     let index = 1;
     for (let i = 0; i < 2; i++) {
@@ -70,13 +71,14 @@ export default function App() {
 
   const pickDeploy = () => {
     let member = [
+      "hunter",
       "gump",
-      "winnie",
-      "anthony",
       "hazle",
       "randy",
+      "anthony",
       "benny",
-      "hunter"
+      "winnie",
+
     ];
     const random = Math.floor(Math.random() * member.length);
     return member[random];
@@ -102,19 +104,19 @@ export default function App() {
       <div className="App">
         {bang && (
             <div>
-              <div className="confetti"></div>
-              <div className="confetti"></div>
-              <div className="confetti"></div>
-              <div className="confetti"></div>
-              <div className="confetti"></div>
-              <div className="confetti"></div>
-              <div className="confetti"></div>
-              <div className="confetti"></div>
-              <div className="confetti"></div>
-              <div className="confetti"></div>
-              <div className="confetti"></div>
-              <div className="confetti"></div>
-              <div className="confetti"></div>
+              <div className="confetti" />
+              <div className="confetti" />
+              <div className="confetti" />
+              <div className="confetti" />
+              <div className="confetti" />
+              <div className="confetti" />
+              <div className="confetti" />
+              <div className="confetti" />
+              <div className="confetti" />
+              <div className="confetti" />
+              <div className="confetti" />
+              <div className="confetti" />
+              <div className="confetti" />
             </div>
         )}
         <h1>{title}</h1>
