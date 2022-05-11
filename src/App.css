@@ -98,3 +98,10 @@ body {
     transform: rotateZ(15deg) rotateY(1440deg) translate(10vw, 110vh);
   }
 }
+
+.fyi {
+  position: absolute;
+  right: 20px;
+  bottom: 20px;
+  text-decoration: none;
+}

@@ -87,6 +87,9 @@ export default function App() {
 
   return (
       <div className="App">
+        <div className="fyi">
+        ** Random 적용 패키지: <a href={'https://www.npmjs.com/package/pick-random'} target="_blank" rel="noreferrer noopener">https://www.npmjs.com/package/pick-random</a>
+        </div>
         {bang && (
             <div>
               <div className="confetti" />
