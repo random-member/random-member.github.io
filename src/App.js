@@ -66,11 +66,10 @@ export default function App() {
     let rest2 = [
       "winnie",
       "anthony",
-      "randy",
-      "hunter",
       "hazle",
       "gump",
       "benny",
+      "nara"
     ];
     result["1"] = pickRandom(rest2, { count: 2 });
     return result;
