@@ -63,28 +63,13 @@ export default function App() {
     const result = {
       1: [],
     };
-    let rest2 = [
-      "winnie",
-      "anthony",
-      "hazle",
-      "gump",
-      "benny",
-      "nara"
-    ];
+    let rest2 = ["winnie", "anthony", "hazle", "gump", "benny", "nara"];
     result["1"] = pickRandom(rest2, { count: 2 });
     return result;
   };
 
   const pickDeploy = () => {
-    let member = [
-      "hunter",
-      "gump",
-      "hazle",
-      "randy",
-      "anthony",
-      "benny",
-      "winnie",
-    ];
+    let member = ["gump", "hazle", "anthony", "benny", "winnie", "nara"];
     return pickRandom(member, { count: 1 });
   };
 
