@@ -2,6 +2,7 @@ import "./App.css";
 import * as React from "react";
 import pickRandom from "pick-random";
 import _remove from "lodash/remove";
+import axios from "axios";
 
 export default function App() {
   const defaultMember = (msg) => ({
@@ -18,6 +19,18 @@ export default function App() {
   const [bang, setBang] = React.useState(false);
 
   const [timeLeft, setTimeLeft] = React.useState(null);
+  const [last, setLast] = React.useState("");
+
+  React.useEffect(() => {
+    axios
+      .get("https://random-number-save.sssssungs.workers.dev/")
+      .then((res) => {
+        if (res.data.results.length > 0) {
+          const result = res.data.results[0];
+          setLast(result.properties.deployer.title[0].text.content);
+        }
+      });
+  }, []);
 
   React.useEffect(() => {
     if (timeLeft === 0) {
@@ -84,11 +97,17 @@ export default function App() {
     setTimeLeft(3);
   };
 
+  const saveToDB = () => {
+    axios.post("https://random-number-save.sssssungs.workers.dev/", {
+      name: deploy,
+    });
+  };
+
   return (
     <>
       {timeLeft && (
         <div className="timer">
-          <div className="number">{timeLeft}</div>}
+          <div className="number">{timeLeft}</div>
         </div>
       )}
       <div className="App">
@@ -184,8 +203,17 @@ export default function App() {
             <div style={{ textTransform: "capitalize", fontSize: "22px" }}>
               {deploy}
             </div>
+            <button onClick={saveToDB}>저장하기</button>
           </div>
           <br />
+        </div>
+        <div>
+          지난번 배포자:
+          <span style={{ textTransform: "capitalize", marginLeft: "5px" }}>
+            {last}
+          </span>
+          😆
+          <br />* 지난 배포자는 이번 배포자 선정 리스트에서 제외됩니다.
         </div>
       </div>
     </>
