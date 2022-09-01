@@ -7,7 +7,6 @@
     "@testing-library/jest-dom": "^5.14.1",
     "@testing-library/react": "^13.0.0",
     "@testing-library/user-event": "^13.2.1",
-    "axios": "^0.27.2",
     "gh-pages": "^4.0.0",
     "lodash": "^4.17.21",
     "pick-random": "^4.0.0",
