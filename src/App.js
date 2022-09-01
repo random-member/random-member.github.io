@@ -146,7 +146,6 @@ export default function App() {
         </button>
         <br />
         <br />
-        <br />
         <div style={{ fontWeight: "bold", fontSize: "30px" }}>회고</div>
         <br />
         <div  style={{ width: '50%', display:'flex', flexDirection:'row', justifyContent:'space-evenly', marginLeft:"auto", marginRight:"auto"}}>
@@ -171,7 +170,6 @@ export default function App() {
             );
           })}
         </div>
-        <br />
         <div>
           <div style={{ fontWeight: "bold", fontSize: "25px" }}>
             Team Sync-Up
@@ -186,7 +184,6 @@ export default function App() {
               </div>
             ))}
           </div>
-          <br />
           <br />
         </div>
         <div>
