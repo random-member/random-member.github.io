@@ -165,7 +165,7 @@ body {
 
 .timer .number {
   z-index:2;
-  font-size: 500px;
+  font-size: 300px;
   display: flex;
   justify-content:center;
   align-items: center;
