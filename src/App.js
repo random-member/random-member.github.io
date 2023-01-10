@@ -22,6 +22,8 @@ export default function App() {
   const [connectDeploy, setConnectDeploy] = React.useState("");
   const [closetUpdateDate, setClosetUpdateDate] = React.useState("");
   const [connectUpdateDate, setConnectUpdateDate] = React.useState("");
+  const [isClosetUpdate, setIsClosetUpdate] = React.useState(false);
+  const [isConnectUpdate, setIsConnectUpdate] = React.useState(false);
 
   React.useEffect(() => {
     if (timeLeft === 0) {
@@ -40,21 +42,31 @@ export default function App() {
   }, [timeLeft]);
 
   React.useEffect(() => {
+    getClosetDeployMember();
+    getConnectDeployMember();
+  });
+
+  const getConnectDeployMember = () => {
     axios
       .get("https://random-member.sssssungs.workers.dev/connect")
       .then(({ data }) => {
         const { name, date } = data;
         setConnectDeploy(name);
         setConnectUpdateDate(makeDashDate(date));
+        setIsConnectUpdate(false);
       });
+  };
+
+  const getClosetDeployMember = () => {
     axios
       .get("https://random-member.sssssungs.workers.dev/closet")
       .then(({ data }) => {
         const { name, date } = data;
         setClosetDeploy(name);
         setClosetUpdateDate(makeDashDate(date));
+        setIsClosetUpdate(false);
       });
-  });
+  };
 
   const generateRetro = () => {
     let rest1 = [
@@ -92,20 +104,32 @@ export default function App() {
   const onClickClosetNext = () => {
     const index = closetMember.indexOf(closetDeploy);
     const nextPerson = closetMember[index + 1] ?? closetMember[0];
+    setIsClosetUpdate(true);
     patch(nextPerson, "closet");
   };
 
   const onClickConnectNext = () => {
     const index = connectMember.indexOf(connectDeploy);
     const nextPerson = connectMember[index + 1] ?? connectMember[0];
+    setIsConnectUpdate(true);
     patch(nextPerson, "connect");
   };
 
   const patch = (name, type) => {
-    axios.post("https://random-member.sssssungs.workers.dev/" + type, {
-      name,
-      date: Number(getCurrentDate().replace(/-/g, "")),
-    });
+    axios
+      .post("https://random-member.sssssungs.workers.dev/" + type, {
+        name,
+        date: Number(getCurrentDate().replace(/-/g, "")),
+      })
+      .then((_) => {
+        if (type === "closet") {
+          getClosetDeployMember();
+        }
+
+        if (type === "connect") {
+          getConnectDeployMember();
+        }
+      });
   };
 
   const getCurrentDate = () =>
@@ -183,12 +207,12 @@ export default function App() {
           }}
         >
           <div>
-            <h2>CLO-SET 배포담당자</h2>
+            <h2>이번 CLO-SET 배포담당자</h2>
             {closetDeploy.length === 0 ? (
               <h2>로딩중..🕖</h2>
             ) : (
               <h2 style={{ textTransform: "capitalize" }}>
-                ️⭐ {closetDeploy} ⭐️
+                ️😋 {closetDeploy} ⭐️
               </h2>
             )}
             <div style={{ color: "grey" }}>
@@ -196,23 +220,23 @@ export default function App() {
             </div>
             <button
               style={{
-                width: "100px",
+                width: "120px",
                 height: "30px",
                 fontSize: "20px",
                 zIndex: 9999,
               }}
               onClick={onClickClosetNext}
             >
-              다음사람
+              {isClosetUpdate ? "업데이트중.." : "다음사람"}
             </button>
           </div>
           <div>
-            <h2>CONNECT 배포담당자</h2>
+            <h2>이번 CONNECT 배포담당자</h2>
             {connectDeploy.length === 0 ? (
               <h2>로딩중..🕖</h2>
             ) : (
               <h2 style={{ textTransform: "capitalize" }}>
-                ✨ {connectDeploy} ✨
+                😜 {connectDeploy} ✨
               </h2>
             )}
             <div style={{ color: "grey" }}>
@@ -220,14 +244,14 @@ export default function App() {
             </div>
             <button
               style={{
-                width: "100px",
+                width: "120px",
                 height: "30px",
                 fontSize: "20px",
                 zIndex: 9999,
               }}
               onClick={onClickConnectNext}
             >
-              다음사람
+              {isConnectUpdate ? "업데이트중.." : "다음사람"}
             </button>
           </div>
         </div>
