@@ -145,18 +145,6 @@ export default function App() {
       <div className="App">
         {bang && <Confetti />}
         <h1>CLO-SET & CONNECT Frontend Board</h1>
-        <button
-          style={{
-            width: "150px",
-            height: "30px",
-            fontSize: "20px",
-            zIndex: 9999,
-          }}
-          onClick={draw}
-        >
-          {bang ? "다시뽑기" : timeLeft ? "뽑는중.." : "회고조 뽑기"}
-        </button>
-        <br />
         <br />
         <div style={{ fontWeight: "bold", fontSize: "30px" }}>회고</div>
         <br />
@@ -195,6 +183,19 @@ export default function App() {
             );
           })}
         </div>
+        <button
+          style={{
+            width: "150px",
+            height: "30px",
+            fontSize: "20px",
+            zIndex: 9999,
+          }}
+          onClick={draw}
+        >
+          {bang ? "다시뽑기" : timeLeft ? "뽑는중.." : "회고조 뽑기"}
+        </button>
+        <br />
+        <br />
         <br />
         <div
           style={{
