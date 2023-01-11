@@ -257,6 +257,28 @@ export default function App() {
           </div>
         </div>
       </div>
+      <br />
+      <br />
+      <br />
+      <div
+        style={{
+          display: "flex",
+          flexDirection: "column",
+          alignItems: "center",
+        }}
+      >
+        <a
+          style={{ color: "inherit" }}
+          href="https://sssssungs.notion.site/c9df7f7146cf4734bd40f1dcfc40b8e0?v=a4a482a598204854b843d8fb50854489"
+          rel="noopener noreferrer"
+          target="_blank"
+        >
+          Notion 열기
+        </a>
+        <div>
+          🚫 수정은 허용되어있지만 특별한 경우 제외하고는 삼가바랍니다 🚫
+        </div>
+      </div>
     </>
   );
 }
