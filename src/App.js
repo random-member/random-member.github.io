@@ -5,7 +5,9 @@ import _remove from "lodash/remove";
 import Confetti from "./confetti";
 import axios from "axios";
 
-const closetMember = ["nara", "gump", "winnie", "anthony", "hazle", "benny"];
+const closetMember = ["nara", "gump", "winnie", "anthony", "hazle", "benny"
+    // , "hugo", "matt"
+];
 const connectMember = ["mari", "randy", "hunter"];
 const TIME_ZONE = 3240 * 10000;
 
@@ -79,6 +81,8 @@ export default function App() {
       "hunter",
       "nara",
       "mari",
+      "hugo",
+      "matt"
     ];
 
     const result = {
@@ -87,9 +91,9 @@ export default function App() {
       3: [],
     };
 
-    result["1"] = pickRandom(rest1, { count: 3 });
+    result["1"] = pickRandom(rest1, { count: 4 });
     const filtered = _remove(rest1, (n) => !result["1"].includes(n));
-    result["2"] = pickRandom(filtered, { count: 3 });
+    result["2"] = pickRandom(filtered, { count: 4 });
     result["3"] = _remove(filtered, (n) => !result["2"].includes(n));
 
     return result;
