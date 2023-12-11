@@ -5,9 +5,7 @@ import _remove from "lodash/remove";
 import Confetti from "./confetti";
 import axios from "axios";
 
-const closetMember = ["nara", "gump", "winnie", "anthony", "hazle", "benny"
-    // , "hugo", "matt"
-];
+const closetMember = ["nara", "gump", "winnie", "anthony", "hazle", "benny", "hugo", "matt"];
 const connectMember = ["mari", "randy", "hunter"];
 const TIME_ZONE = 3240 * 10000;
 
