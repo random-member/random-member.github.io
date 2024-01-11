@@ -14,6 +14,7 @@ export default function App() {
     1: [msg],
     2: [msg],
     3: [msg],
+    4: [msg],
   });
   const [member, setMember] = React.useState(defaultMember("뽑아주세요"));
   const [bang, setBang] = React.useState(false);
@@ -80,19 +81,24 @@ export default function App() {
       "nara",
       "mari",
       "hugo",
-      "matt"
+      "matt",
+        "jhin",
+        "harvey"
     ];
 
     const result = {
       1: [],
       2: [],
       3: [],
+      4: [],
     };
 
-    result["1"] = pickRandom(rest1, { count: 4 });
+    result["1"] = pickRandom(rest1, { count: 3 });
     const filtered = _remove(rest1, (n) => !result["1"].includes(n));
-    result["2"] = pickRandom(filtered, { count: 4 });
-    result["3"] = _remove(filtered, (n) => !result["2"].includes(n));
+    result["2"] = pickRandom(filtered, { count: 3 });
+    const filtered2 = _remove(filtered, (n) => !result["2"].includes(n))
+    result["3"] = pickRandom(filtered2, { count: 3 });
+    result["4"] =  _remove(filtered2, (n) => !result["3"].includes(n))
 
     return result;
   };
