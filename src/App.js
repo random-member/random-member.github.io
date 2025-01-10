@@ -82,8 +82,7 @@ export default function App() {
       "mari",
       "hugo",
       "matt",
-        "jhin",
-        "harvey"
+      "harvey"
     ];
 
     const result = {
